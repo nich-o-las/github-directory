@@ -1,7 +1,6 @@
 [build]
   publish='build'
   functions='functions'
-  targetPort=3000
 
 [[redirects]]
   from='/api/getUsers' 
