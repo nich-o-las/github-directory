@@ -6,7 +6,6 @@ import "./style.scss";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCodeBranch, faAddressBook } from "@fortawesome/free-solid-svg-icons";
-const { Octokit } = require("@octokit/rest");
 
 export default function User(props) {
   const [repos, setRepos] = useState([]);
@@ -21,14 +20,9 @@ export default function User(props) {
       getFollowers();
     }
   }, [showing]);
-
-  // // GitHub's api library
-  // const octokit = new Octokit();
-
   // Fetch a user's repos using the provided repos endpoint
   const getRepos = async () => {
     setLoading(true);
-    // const result = await octokit.request(`GET ${props.repos_url}`);
     const result = await axios.get(
       `/.netlify/functions/getRepos/getRepos.js?user=${props.login}`
     );
@@ -39,7 +33,6 @@ export default function User(props) {
   // Fetch a user's followers using the provided followers endpoint
   const getFollowers = async () => {
     setLoading(true);
-    // const result = await octokit.request(`GET ${props.followers_url}`);
     const result = await axios.get(
       `/.netlify/functions/getFollowers/getFollowers.js?user=${props.login}`
     );

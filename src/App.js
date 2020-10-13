@@ -4,7 +4,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import User from "./components/User";
 import Header from "./components/Header";
-const { Octokit } = require("@octokit/rest");
 
 function App() {
   const [page, setPage] = useState(0);
@@ -24,9 +23,6 @@ function App() {
     }
   }, [debouncedSearchTerm]);
 
-  // octokit is a library that helps you to interact with GitHub's API
-  const octokit = new Octokit();
-
   // get initial 30 users
   const getUsers = async () => {
     const result = await axios.get("/api/getUsers");
@@ -36,7 +32,6 @@ function App() {
   // adds more users to the end of users array. Is called in the infinite scroll component.
   const getMoreUsers = async () => {
     //only add more users if search bar is empty
-    console.log(users[users.length - 1].id);
     if (!searchQuery) {
       const result = await axios.get(
         `/.netlify/functions/getMoreUsers/getMoreUsers.js?id=${
@@ -49,11 +44,10 @@ function App() {
 
   // get a list of users whose name contains your search term
   const searchUsers = async () => {
-    const result = await octokit.search.users({ q: searchQuery, per_page: 30 });
-    axios.get(
-      `/.netlify/functions/searchUsers/searchUsers.js?user=${searchQuery}`
+    const result = await axios.get(
+      `/.netlify/functions/searchUsers/searchUsers.js?user=${debouncedSearchTerm}`
     );
-    setUsers([...result.data.items]);
+    setUsers([...result.data]);
   };
 
   // handles the search bar
