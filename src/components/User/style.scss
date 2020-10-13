@@ -1,0 +1,133 @@
+.User{
+  background: white;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-top: 1em;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+  padding: 1em;
+}
+
+.User-profile-photo{
+  height: auto;
+  width: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+  margin-top: 1em;
+}
+
+.User-profile-link{
+  background-color: black;
+  color: white;
+  font-size: 1em;
+  padding: .25em;
+  border-radius: 5px;
+}
+
+.User-photo-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.User-info-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1em;
+  width: 100%;
+}
+
+.User-info-buttons{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.User-info-buttons span{
+  padding: .25em;
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
+.User-followers{
+  display: flex;
+  flex-direction: column;
+}
+
+.User-lists{
+  height: 200px;
+  width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.User-landing{
+  overflow: hidden;
+  padding: 1em;
+}
+
+.User-loading{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.User-lists::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.User-lists::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.User-lists::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.User-lists::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media only screen and (max-width: 750px){
+  .User{
+    flex-direction: column;
+  }
+
+  .User-photo-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .User-profile-photo{
+    margin: 1em auto;
+    width: 50%;
+    height: auto;
+  }
+
+  .User-info-container{
+    margin-left: 0;
+  }
+
+}
+
+@media only screen and (max-width: 500px){
+  .User-profile-photo{
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .User-profile-photo{
+    width: 70%;
+  }
+}

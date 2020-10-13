@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed&display=swap');
+
+body{
+  background-image: url('./memphis-mini-dark.png');
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  max-width: 960px;
+  margin: auto;
+  padding: 1em;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+.Users-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.App-searchbar{
+  width: 100%;
+  padding: .5em;
+  margin-top: .5em;
+}
+
+.link{
+  color: inherit;
+}
+
+.mr-1{
+  margin-right: 1em;
+}
+
+.ml-1{
+  margin-left: 1em;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+@media only screen and (max-width: 500px){
+  .App{
+    padding: 0;
+  }
+}
+

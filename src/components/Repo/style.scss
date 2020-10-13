@@ -1,0 +1,52 @@
+.Repo{
+  border-bottom: 1px solid black;
+  display: flex;
+  padding: .25em;
+}
+
+.Repo-link{
+  text-align: left;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Repo-link a{
+  overflow-wrap: break-word;
+  overflow: hidden;
+  position: relative;
+  top: 0px;
+}
+
+.Repo-description{
+  text-align: right;
+  width: 60%;
+  margin-left: 10%;
+}
+
+.Repo-description p{
+  position: relative;
+  top: 0px;
+  padding: 0;
+}
+
+@media only screen and (max-width: 750px){
+  .Repo{
+    display: block;
+  }
+
+  .Repo-description{
+    width: 98%;
+    margin: auto;
+  }
+
+  .Repo-description p{
+    text-align: center;
+  }
+
+  .Repo-link{
+    text-align: center;
+    width: 100%;
+  }
+}

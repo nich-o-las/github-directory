@@ -1,0 +1,59 @@
+.Header{
+  width: 100;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 1em 2em;
+  flex-direction: row;
+  justify-content: space-between;
+};
+
+.Header-brand h1{
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.Header-brand p{
+  font-weight: lighter;
+  text-align: center;
+}
+
+.Header-searchbar{
+  padding: .5em;
+  width: 100%;
+}
+
+.Header-search-container{
+  width: 33%;
+  display: flex;
+}
+
+@media only screen and (max-width: 750px){
+  .Header-search-container{
+    width: 50%;
+  }
+
+  .Header .ml-1{
+    margin-left: 0;
+  }
+
+  .Header .mr-1{
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 570px){
+
+  .Header-search-container{
+    width: 90%;
+    margin: auto;
+  }
+
+  .Header{
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
