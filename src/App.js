@@ -24,10 +24,7 @@ function App() {
   }, [debouncedSearchTerm]);
 
   // octokit is a library that helps you to interact with GitHub's API
-  const octokit = new Octokit({
-    auth: "b50e6a99e217eba99faac03bceeaf506850ba05d",
-    userAgent: "GitHub Directory App"
-  });
+  const octokit = new Octokit();
 
   // get initial 30 users
   const getUsers = async () => {

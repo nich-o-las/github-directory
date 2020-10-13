@@ -23,10 +23,7 @@ export default function User(props) {
   }, [showing]);
 
   // GitHub's api library
-  const octokit = new Octokit({
-    auth: "b50e6a99e217eba99faac03bceeaf506850ba05d",
-    userAgent: "GitHub Directory App",
-  });
+  const octokit = new Octokit();
 
   // Fetch a user's repos using the provided repos endpoint
   const getRepos = async () => {
