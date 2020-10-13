@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
 import User from "./components/User";
-import Header from './components/Header';
+import Header from "./components/Header";
 const { Octokit } = require("@octokit/rest");
 
 function App() {
   const [page, setPage] = useState(0);
   const [users, setUsers] = useState([]);
   // const [isSearching, setIsSearching] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   // changes every time the search query has been stagnant for .500 milliseconds
-  const debouncedSearchTerm = useDebounce(searchQuery, 500)
+  const debouncedSearchTerm = useDebounce(searchQuery, 500);
 
   // search users when you change search term / list all users if empty
-  useEffect(()=>{
-    if (debouncedSearchTerm !== '') {
+  useEffect(() => {
+    if (debouncedSearchTerm !== "") {
       searchUsers();
     } else {
       setUsers([]);
@@ -28,22 +29,30 @@ function App() {
 
   // get initial 30 users
   const getUsers = async () => {
-    const result = await octokit.users.list();
+    const result = await axios.get("/api/getUsers");
     setUsers([...result.data]);
   };
 
   // adds more users to the end of users array. Is called in the infinite scroll component.
   const getMoreUsers = async () => {
     //only add more users if search bar is empty
-    if(!searchQuery){
-      const result = await octokit.users.list({since: (users.length ? users[users.length -1].id : 0)});
+    console.log(users[users.length - 1].id);
+    if (!searchQuery) {
+      const result = await axios.get(
+        `/.netlify/functions/getMoreUsers/getMoreUsers.js?id=${
+          users[users.length - 1].id
+        }`
+      );
       setUsers([...users, ...result.data]);
     }
   };
 
   // get a list of users whose name contains your search term
   const searchUsers = async () => {
-    const result = await octokit.search.users({q : searchQuery, per_page: 30});
+    const result = await octokit.search.users({ q: searchQuery, per_page: 30 });
+    axios.get(
+      `/.netlify/functions/searchUsers/searchUsers.js?user=${searchQuery}`
+    );
     setUsers([...result.data.items]);
   };
 
@@ -55,10 +64,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header 
-        onChange={handleChange}
-        searchQuery={searchQuery}
-      />
+      <Header onChange={handleChange} searchQuery={searchQuery} />
       <InfiniteScroll
         className="Users-container"
         dataLength={users.length}
@@ -66,7 +72,7 @@ function App() {
         hasMore={true}
       >
         {/* map over your users and pass their contents into User component as props */}
-        {users.map(o => (
+        {users.map((o) => (
           <User key={o.node_id} {...o} />
         ))}
       </InfiniteScroll>
@@ -74,9 +80,8 @@ function App() {
   );
 }
 
-       
-// Hook the allows search functionality without an actual submit button. 
-// Only returns value after it has remained the same for the provided time interval. 
+// Hook the allows search functionality without an actual submit button.
+// Only returns value after it has remained the same for the provided time interval.
 function useDebounce(value, delay) {
   // State and setters for debounced value
   const [debouncedValue, setDebouncedValue] = useState(value);

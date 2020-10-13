@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Repo from "../Repo";
 import Follower from "../Follower";
 import "./style.scss";
@@ -15,20 +16,22 @@ export default function User(props) {
 
   useEffect(() => {
     if (showing === "repos" && !repos.length) {
-
       getRepos();
     } else if (showing === "followers" && !followers.length) {
       getFollowers();
     }
   }, [showing]);
 
-  // GitHub's api library
-  const octokit = new Octokit();
+  // // GitHub's api library
+  // const octokit = new Octokit();
 
   // Fetch a user's repos using the provided repos endpoint
   const getRepos = async () => {
     setLoading(true);
-    const result = await octokit.request(`GET ${props.repos_url}`);
+    // const result = await octokit.request(`GET ${props.repos_url}`);
+    const result = await axios.get(
+      `/.netlify/functions/getRepos/getRepos.js?user=${props.login}`
+    );
     setRepos([...result.data]);
     setLoading(false);
   };
@@ -36,7 +39,10 @@ export default function User(props) {
   // Fetch a user's followers using the provided followers endpoint
   const getFollowers = async () => {
     setLoading(true);
-    const result = await octokit.request(`GET ${props.followers_url}`);
+    // const result = await octokit.request(`GET ${props.followers_url}`);
+    const result = await axios.get(
+      `/.netlify/functions/getFollowers/getFollowers.js?user=${props.login}`
+    );
     setFollowers([...result.data]);
     setLoading(false);
   };
@@ -63,16 +69,13 @@ export default function User(props) {
       <div className="User-info-container">
         {/* conditionally render the repos/followers buttons */}
         <div className="User-info-buttons">
-          <span
-            onClick={() => setShowing("repos")}
-            className='repo-button'
-          >
+          <span onClick={() => setShowing("repos")} className="repo-button">
             <FontAwesomeIcon icon={faCodeBranch} />{" "}
             {showing !== "repos" && "Show"} Repos
           </span>
           <span
             onClick={() => setShowing("followers")}
-            className='follower-button'
+            className="follower-button"
           >
             {showing !== "followers" && "Show"} Followers{" "}
             <FontAwesomeIcon icon={faAddressBook} />
@@ -107,12 +110,14 @@ export default function User(props) {
           // hide or display this div depending on "showing" state
           style={{ display: `${showing === "followers" ? "flex" : "none"}` }}
         >
-           {/* Show followers after loading, or show message if no followers are found */}
+          {/* Show followers after loading, or show message if no followers are found */}
           {followers.length > 0 ? (
             followers.map((i) => <Follower key={i.node_id} {...i} />)
+          ) : loading ? (
+            <p>
+              <strong>Loading...</strong>
+            </p>
           ) : (
-            loading ? 
-            <p><strong>Loading...</strong></p> :
             <p>'No followers to show'</p>
           )}
         </div>
