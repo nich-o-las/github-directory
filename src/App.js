@@ -70,10 +70,16 @@ function App() {
         hasMore={true}
       >
         {/* map over your users and pass their contents into User component as props */}
-        {loading ? <p className="App-loading"><strong>Loading...</strong></p> : (
-          users.map((o) => (
-            <User key={o.node_id} {...o} />
-          ))
+        
+        {users.map((o) => (
+          <User key={o.node_id} {...o} />
+        ))}
+        {(loading && 
+          <p className="App-loading">
+            <strong>
+              {users.length > 0 ? "Loading more users..." : "Loading..."}
+            </strong>
+          </p>
         )}
       </InfiniteScroll>
     </div>
