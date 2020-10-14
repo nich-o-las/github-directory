@@ -70,7 +70,7 @@ function App() {
         hasMore={true}
       >
         {/* map over your users and pass their contents into User component as props */}
-        {loading ? <p>Loading...</p> : (
+        {loading ? <p className="App-loading"><strong>Loading...</strong></p> : (
           users.map((o) => (
             <User key={o.node_id} {...o} />
           ))
