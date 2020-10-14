@@ -1,7 +1,7 @@
 # GitHub Directory
 ## A web app for viewing GitHub users
 
-### Deployed at: [github-tracker-2020.app.netlify.com](github-tracker-2020.app.netlify.com)
+### Deployed at: [https://github-directory-2020.app.netlify.com](https://github-directory-2020.app.netlify.com)
 
 ## User Story
 ### As a developer looking to check out the work of my peers, I would like to:
