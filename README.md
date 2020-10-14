@@ -12,6 +12,8 @@
 - see each user's top repos and followers
   - be able to follow links to repos/followers GitHub Pages
 
+<img src="./src/githubDirectory.gif">
+
 
 ### Technologies Used
 - React
