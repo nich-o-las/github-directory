@@ -84,7 +84,7 @@ export default function User(props) {
             repos.map((i) => <Repo key={i.node_id} {...i} />)
           ) : loading === true ? (
             <p>
-              <strong>loading...</strong>
+              <strong>Loading...</strong>
             </p>
           ) : (
             <p>No repos to show</p>
@@ -111,7 +111,7 @@ export default function User(props) {
               <strong>Loading...</strong>
             </p>
           ) : (
-            <p>'No followers to show'</p>
+            <p>No followers to show</p>
           )}
         </div>
       </div>

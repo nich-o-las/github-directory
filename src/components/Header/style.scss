@@ -22,7 +22,14 @@
 
 .Header-searchbar{
   padding: .5em;
+  border-radius: 5px;
   width: 100%;
+  padding-left: 2em;
+}
+
+.Header-search-icon{
+  position: absolute;
+  margin: .5em .5em;
 }
 
 .Header-search-container{
@@ -42,10 +49,13 @@
   .Header .mr-1{
     margin-right: 0;
   }
+
+  .Header-search-icon{
+    margin-left: .5em;
+  }
 }
 
 @media only screen and (max-width: 570px){
-
   .Header-search-container{
     width: 90%;
     margin: auto;

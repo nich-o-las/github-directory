@@ -36,7 +36,7 @@ export default function Header(props){
           onChange={props.onChange}
           placeholder="search users"
         />
-      <FontAwesomeIcon icon={faSearch} className="ml-1 Header-search-icon"/>
+      <FontAwesomeIcon icon={faSearch} className="Header-search-icon"/>
       </div>
     </div>
   )

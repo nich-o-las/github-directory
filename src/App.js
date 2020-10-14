@@ -6,7 +6,7 @@ import User from "./components/User";
 import Header from "./components/Header";
 
 function App() {
-  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
   // const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,20 +25,24 @@ function App() {
 
   // get initial 30 users
   const getUsers = async () => {
+    setLoading(true);
     const result = await axios.get("/api/getUsers");
     setUsers([...result.data]);
+    setLoading(false);
   };
 
   // adds more users to the end of users array. Is called in the infinite scroll component.
   const getMoreUsers = async () => {
     //only add more users if search bar is empty
     if (!searchQuery) {
+      setLoading(true);
       const result = await axios.get(
         `/.netlify/functions/getMoreUsers/getMoreUsers.js?id=${
           users[users.length - 1].id
         }`
       );
       setUsers([...users, ...result.data]);
+      setLoading(false);
     }
   };
 
@@ -66,9 +70,11 @@ function App() {
         hasMore={true}
       >
         {/* map over your users and pass their contents into User component as props */}
-        {users.map((o) => (
-          <User key={o.node_id} {...o} />
-        ))}
+        {loading ? <p>Loading...</p> : (
+          users.map((o) => (
+            <User key={o.node_id} {...o} />
+          ))
+        )}
       </InfiniteScroll>
     </div>
   );

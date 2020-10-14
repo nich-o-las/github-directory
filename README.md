@@ -1,8 +1,6 @@
 # GitHub Directory
 ## A web app for viewing GitHub users
 
-### Deployed at: https://github-directory-2020.netlify.app
-
 ## User Story
 ### As a developer looking to check out the work of my peers, I would like to:
 - view all GitHub users in ascending id order
@@ -14,12 +12,13 @@
 
 <img src="./src/githubDirectory.gif">
 
-
 ### Technologies Used
 - React
 - Octokit (GitHub SDK)
 - react-infinite-scroll-component (npm package)
 - Axios
 - Netlify Serverless Functions
+
+### Deployed at: https://github-directory-2020.netlify.app
 
 
