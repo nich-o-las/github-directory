@@ -18,7 +18,7 @@
 ### Technologies Used
 - React
 - Octokit (GitHub SDK)
-- react-infinite-scroll-component(npm package)
+- react-infinite-scroll-component (npm package)
 - Axios
 - Netlify Serverless Functions
 
